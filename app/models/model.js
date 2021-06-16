@@ -1,34 +1,68 @@
-const mongoose = require('mongoose');
+/**
+ * @module       EmployeeModel
+ * @file         models.js
+ * @description  EmpSchema holds the database Schema 
+ * @author       Mohit Shah <mohitshah7777@gmail.com>
+ * @since        15/06/2021  
+-----------------------------------------------------------------------------------------------*/
 
-const empSchema = mongoose.Schema({
-    name: {
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+const EmpSchema = mongoose.Schema({
+    firstName: {
         type: String,
         required : true      
     },
-    gender: {
+    lastName: {
         type: String,
-        required: true 
-    },
-    department: {
-        type: String,
-        required: true
-    },
-    salary: {
-        type: String,
-        required: true
+        required : true      
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    phone:{
+    password: {
         type: String,
         required: true
     },
-    date:{
-        type: Date,
-        default: Date.now
+    confirmpassword: {
+        type: String,
+        required: true
     }
 })
 
-module.exports = mongoose.model('EmpApp', empSchema);
+EmpSchema.pre("save", async function(next){
+    if(this.isModified("password")){
+        // console.log(`current password is ${this.password}`)
+        this.password = await bcrypt.hash(this.password, 8)
+        // console.log(`current password is ${this.password}`);
+        this.confirmpassword = await bcrypt.hash(this.confirmpassword, 8)
+        // console.log(`current confirm password is ${this.confirmpassword}`)
+    }
+    next();
+})
+
+const Register = mongoose.model('Register', EmpSchema)
+
+class EmployeeModel {
+
+    /**
+     * @description register user in the database
+     * @param employee 
+     * @param callback 
+     */
+    createDetails = (employee, callback) => {
+        const empSchema = new Register({
+            firstName: employee.firstName,
+            lastName: employee.lastName,
+            email: employee.email,
+            password: employee.password,
+            confirmpassword: employee.confirmpassword
+        });
+        empSchema.save(callback)
+    };
+}
+
+module.exports = new EmployeeModel();
