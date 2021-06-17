@@ -1,5 +1,6 @@
 const express = require("express");
 require('./config/database.config');
+require('dotenv')
 
 // Create express app
 const app = express();
@@ -10,7 +11,7 @@ app.use(express.urlencoded({extended: true}));
 // parse requests of content-type - application/json
 app.use(express.json());
 
-const PORT = process.env.PORT || 4000;
+const port = process.env.PORT
 
 // define a simple route    
 app.get('/',(req,res) => {
@@ -21,8 +22,8 @@ app.get('/',(req,res) => {
 require('./app/routes/routes')(app);
 
 // listen for requests
-app.listen(PORT, () => {
-    console.log("Server is listening on port", PORT);
+app.listen(port, () => {
+    console.log("Server is listening on port", port);
 });
 
 module.exports = app;
