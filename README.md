@@ -1,6 +1,4 @@
-# Project Title
-
-Employee Payroll App using MERN Stack
+# Employee Payroll App using MERN Stack
 
 ## Description
 
