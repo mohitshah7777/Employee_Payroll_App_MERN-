@@ -8,6 +8,7 @@
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const Joi = require('joi');
 
 const EmpSchema = mongoose.Schema({
     firstName: {
@@ -31,6 +32,8 @@ const EmpSchema = mongoose.Schema({
         type: String,
         required: true
     }
+},{
+    timestamps: true
 })
 
 EmpSchema.pre("save", async function(next){

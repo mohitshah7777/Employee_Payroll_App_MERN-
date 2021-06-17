@@ -6,7 +6,17 @@
  * @since        15/06/2021  
 -----------------------------------------------------------------------------------------------*/
 
+const Joi = require('joi');
 const service = require('../services/service');
+
+// joi validation
+const validateSchema = Joi.object({
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(8).max(20).required(),
+    confirmpassword: Joi.string().valid(Joi.ref('password')).required()
+}) 
 
 class EmployeeController{
 
@@ -16,12 +26,6 @@ class EmployeeController{
      * @param req,res for service
      */
     createApi = (req, res) => {
-        // Validate request
-        if(!req.body.email) {
-            return res.status(400).send({
-                message: "Email must be unique"
-            });
-        }
 
         // Create an employee
         const employee = {
@@ -34,6 +38,12 @@ class EmployeeController{
 
         const empdata ={}
         
+        // Validate request
+        const validation = validateSchema.validate(employee)
+        if(validation.error){
+            res.status(400).send('Validation Error')
+        }
+
         service.createDetails(employee, (error,data) => {
             if(error){
                 return res.status(500)
