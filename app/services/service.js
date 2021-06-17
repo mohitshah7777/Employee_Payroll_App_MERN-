@@ -9,14 +9,15 @@
 const model = require('../models/model')
 
 class EmployeeService {
-    
     /**
      * @description Create and save employee then send response to controller
      * @method createDetails to save the employee
      * @param callback callback for controller
      */
     createDetails = (employee, callback) => {
-        model.createDetails(employee, callback)
+        model.createDetails(employee, (error, data) => {
+            return error ? callback(error, null) : callback(null, data)
+        })
     }
 }
 

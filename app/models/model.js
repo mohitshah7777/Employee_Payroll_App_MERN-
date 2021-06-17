@@ -8,7 +8,7 @@
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const Joi = require('joi');
+
 
 const EmpSchema = mongoose.Schema({
     firstName: {
@@ -28,7 +28,7 @@ const EmpSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    confirmpassword: {
+    confirmPassword: {
         type: String,
         required: true
     }
@@ -38,11 +38,8 @@ const EmpSchema = mongoose.Schema({
 
 EmpSchema.pre("save", async function(next){
     if(this.isModified("password")){
-        // console.log(`current password is ${this.password}`)
         this.password = await bcrypt.hash(this.password, 8)
-        // console.log(`current password is ${this.password}`);
-        this.confirmpassword = await bcrypt.hash(this.confirmpassword, 8)
-        // console.log(`current confirm password is ${this.confirmpassword}`)
+        this.confirmPassword = await bcrypt.hash(this.confirmPassword, 8)
     }
     next();
 })
@@ -50,7 +47,6 @@ EmpSchema.pre("save", async function(next){
 const Register = mongoose.model('Register', EmpSchema)
 
 class EmployeeModel {
-
     /**
      * @description register user in the database
      * @param employee 
@@ -62,7 +58,7 @@ class EmployeeModel {
             lastName: employee.lastName,
             email: employee.email,
             password: employee.password,
-            confirmpassword: employee.confirmpassword
+            confirmPassword: employee.confirmPassword
         });
         empSchema.save(callback)
     };

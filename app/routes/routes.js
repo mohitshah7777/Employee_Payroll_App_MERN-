@@ -11,5 +11,5 @@ const controller = require('../controllers/controller')
 module.exports = (app) => {
 
     //create api for registration
-    app.post('/employee', controller.createApi);
+    app.post('/employee', controller.registerApi);
 }

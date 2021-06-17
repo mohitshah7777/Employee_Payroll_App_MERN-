@@ -5,27 +5,21 @@
  * @author       Mohit Shah <mohitshah7777@gmail.com>
  * @since        15/06/2021  
 -----------------------------------------------------------------------------------------------*/
-
-const Joi = require('joi');
 const service = require('../services/service');
-
-// joi validation
-const validateSchema = Joi.object({
-    firstName: Joi.string().required(),
-    lastName: Joi.string().required(),
-    email: Joi.string().email().required(),
-    password: Joi.string().min(8).max(20).required(),
-    confirmpassword: Joi.string().valid(Joi.ref('password')).required()
-}) 
+const validateSchema = require('../middleware/validation');
 
 class EmployeeController{
-
     /**
      * @description Create and save employee and sending response to service
-     * @method createApi to save the employee
+     * @method registerApi to save the employee
      * @param req,res for service
      */
-    createApi = (req, res) => {
+    registerApi = (req, res) => {
+        // Validate request
+        const validation = validateSchema.validate(req.body)
+        if(validation.error){
+            res.status(400).send({message: validation.error.details[0].message})
+        }
 
         // Create an employee
         const employee = {
@@ -33,25 +27,18 @@ class EmployeeController{
             lastName: req.body.lastName,
             email: req.body.email,
             password: req.body.password,
-            confirmpassword: req.body.confirmpassword
+            confirmPassword: req.body.confirmPassword
         }
 
         const empdata ={}
         
-        // Validate request
-        const validation = validateSchema.validate(employee)
-        if(validation.error){
-            res.status(400).send('Validation Error')
-        }
-
         service.createDetails(employee, (error,data) => {
             if(error){
-                return res.status(500)
-                .send({message: error.message || "Error occurred while registering the employee" })
+                return res.status(400).send({message: "Email already exists"})
             }
             else{
                 return res.status(200)
-                .send({message: "Success", data: empdata.data = data})
+                .send({message: "Success! Employee has been Registered", data: empdata.data = data})
             }
         })
     }
