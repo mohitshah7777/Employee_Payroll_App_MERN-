@@ -8,7 +8,7 @@ A simple Employee Payroll App using MongoDB, Express.js, React.js, and Node.js w
 
 ### Dependencies
 
-* node.js, npm, mongodb, nodemon etc
+* express, mongoose, npm, joi, dotenv, bcrypt, nodemon etc
 * postman for API testing
 * ex. Windows 10, Linux, macOS
 
