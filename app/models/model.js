@@ -62,6 +62,22 @@ class EmployeeModel {
         });
         empSchema.save(callback)
     };
+
+    /**
+     * @description login user from the database
+     * @param loginData 
+     * @param callback for service
+     */
+    loginDetails = (loginData, callBack) => {
+        Register.findOne({'email': loginData.email},(error, data) => {
+            if(error){
+                return callBack(error, null);
+            }else if(!data){
+                return callBack("Invalid Credentials", null);
+            }
+            return callBack(null, data);
+        })
+    }
 }
 
 module.exports = new EmployeeModel();

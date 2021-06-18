@@ -7,6 +7,7 @@
 -----------------------------------------------------------------------------------------------*/
 
 const model = require('../models/model')
+const bcrypt = require('bcryptjs')
 
 class EmployeeService {
     /**
@@ -16,6 +17,17 @@ class EmployeeService {
      */
     createDetails = (employee, callback) => {
         model.createDetails(employee, (error, data) => {
+            return error ? callback(error, null) : callback(null, data)
+        })
+    }
+
+    /**
+     * @description sends the info to loginApi in the controller
+     * @method loginDetails
+     * @param callback callback for controller
+     */
+    loginDetails = (loginData, callback) => {
+        model.loginDetails(loginData, (error, data) => {
             return error ? callback(error, null) : callback(null, data)
         })
     }

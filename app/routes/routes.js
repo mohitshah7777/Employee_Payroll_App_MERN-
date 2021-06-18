@@ -10,6 +10,9 @@ const controller = require('../controllers/controller')
 
 module.exports = (app) => {
 
-    //create api for registration
-    app.post('/employee', controller.registerApi);
+    //api for registration
+    app.post('/register', controller.registerApi);
+
+    //api for login
+    app.post('/login', controller.loginApi);
 }

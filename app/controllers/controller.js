@@ -34,11 +34,32 @@ class EmployeeController{
         
         service.createDetails(employee, (error,data) => {
             if(error){
-                return res.status(400).send({message: "Email already exists"})
+                return res.status(400)
+                .send({message: "Email already exists"})
             }
             else{
                 return res.status(200)
                 .send({message: "Success! Employee has been Registered", data: empdata.data = data})
+            }
+        })
+    }
+
+    /**
+     * @description retrieving login info from user by email and password
+     * @method loginApi
+     * @param req,res for service
+     */
+    loginApi = (req, res) => {
+        const loginData = {
+            email: req.body.email,
+            password : req.body.password
+        }
+
+        service.loginDetails(loginData, (error, data) => {
+            if(error){
+                return res.status(500).send({message: error})
+            }else{
+                return res.status(200).send({message: "Success! Logged In", data: data})
             }
         })
     }
