@@ -28,7 +28,13 @@ class EmployeeService {
      */
     loginDetails = (loginData, callback) => {
         model.loginDetails(loginData, (error, data) => {
-            return error ? callback(error, null) : callback(null, data)
+            if(error){
+                callback(error, null)
+            }
+            // if(bcrypt.compare(loginData.password, data.password)){
+            //     callback("Password Incorrrect", null)
+            // }
+            return callback(null, data)
         })
     }
 }

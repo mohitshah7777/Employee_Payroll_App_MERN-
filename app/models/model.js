@@ -13,15 +13,18 @@ const bcrypt = require('bcryptjs');
 const EmpSchema = mongoose.Schema({
     firstName: {
         type: String,
-        required : true      
+        required : true ,
+        validate: /^[a-zA-Z]{2,20}/     
     },
     lastName: {
         type: String,
-        required : true      
+        required : true,
+        validate: /^[a-zA-Z]{2,20}/      
     },
     email: {
         type: String,
         required: true,
+        validate: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
         unique: true
     },
     password: {
