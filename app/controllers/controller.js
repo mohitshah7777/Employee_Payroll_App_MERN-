@@ -7,7 +7,6 @@
 -----------------------------------------------------------------------------------------------*/
 const service = require('../services/service');
 const validateSchema = require('../middleware/validation');
-const bcrypt = require('bcryptjs')
 
 class EmployeeController{
     /**
@@ -56,14 +55,12 @@ class EmployeeController{
             password : req.body.password
         }
 
-        service.loginDetails(loginData, (error, data) => {
+        service.loginDetails(loginData, (error, token) => {
             if(error){
                 return res.status(400).send({message: error})
-            }if(bcrypt.compare(loginData.password, data.password)){
-                return res.status(400).send({message:'Incorrect Password'})
             }
             else{
-                return res.status(200).send({message: "Success! Logged In", data: data})
+                return res.status(200).send({message: "Success! Logged In", token: token})
             }
         })
     }

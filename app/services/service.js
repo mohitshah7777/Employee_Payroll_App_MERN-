@@ -7,7 +7,7 @@
 -----------------------------------------------------------------------------------------------*/
 
 const model = require('../models/model')
-const bcrypt = require('bcryptjs')
+const helper = require('../middleware/helper')
 
 class EmployeeService {
     /**
@@ -27,14 +27,15 @@ class EmployeeService {
      * @param callback callback for controller
      */
     loginDetails = (loginData, callback) => {
+        const token = helper.createToken({loginData})
+
         model.loginDetails(loginData, (error, data) => {
             if(error){
                 callback(error, null)
+            }else if(helper.bcryptAuthentication(loginData.password, data.password)){
+                return callback("Incorrect Password", error)
             }
-            // if(bcrypt.compare(loginData.password, data.password)){
-            //     callback("Password Incorrrect", null)
-            // }
-            return callback(null, data)
+            return callback(null, token)
         })
     }
 }
