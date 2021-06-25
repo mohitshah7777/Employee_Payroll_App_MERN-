@@ -5,7 +5,6 @@
  * @author       Mohit Shah <mohitshah7777@gmail.com>
  * @since        15/06/2021  
 -----------------------------------------------------------------------------------------------*/
-
 const model = require('../models/model')
 const helper = require('../middleware/helper')
 
@@ -27,9 +26,8 @@ class EmployeeService {
      * @param callback callback for controller
      */
     loginDetails = (loginData, callback) => {
-        const token = helper.createToken({loginData})
-
         model.loginDetails(loginData, (error, data) => {
+            const token = helper.createToken({loginData})
             if(error){
                 callback(error, null)
             }else if(helper.bcryptAuthentication(loginData.password, data.password)){

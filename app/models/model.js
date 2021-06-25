@@ -5,10 +5,8 @@
  * @author       Mohit Shah <mohitshah7777@gmail.com>
  * @since        15/06/2021  
 -----------------------------------------------------------------------------------------------*/
-
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-
 
 const EmpSchema = mongoose.Schema({
     firstName: {

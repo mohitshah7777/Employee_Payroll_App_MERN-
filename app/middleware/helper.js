@@ -7,7 +7,6 @@
 -----------------------------------------------------------------------------------------------*/
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-require('dotenv').config()
 
 class Helper{
 
@@ -16,9 +15,9 @@ class Helper{
      * @param {*} loginData
      * @returns 
      */
-    createToken(loginData){
+    createToken = (loginData) => {
         return jwt.sign(loginData, process.env.SECRET_TOKEN, {
-            expiresIn: "2000s"
+            expiresIn: "3000s"
         })
     }
 
@@ -29,7 +28,8 @@ class Helper{
      * @returns 
      */
     bcryptAuthentication = (loginPassword, databasePassword) => {
-        return (loginPassword && databasePassword) ? (!bcrypt.compareSync(loginPassword, databasePassword)) : false;
+        let result = bcrypt.compareSync(loginPassword, databasePassword)
+        return (loginPassword && databasePassword) ? !result : false;
     }
     
     /**
@@ -43,9 +43,9 @@ class Helper{
         let token = req.get('token');
         return (token) ?
             jwt.verify(token, SECRET_TOKEN, error => {
-                return (error) ? res.status(400).send({message: "Invalid Token"}) : next();
+                return (error) ? res.status(400).send({success: false, message: "Invalid Token"}) : next();
             }) :
-        res.status(401).send({message: "Token missing! Invalid user"});
+        res.status(401).send({success: true, message: "Token missing! Invalid user"});
     }
 }
 

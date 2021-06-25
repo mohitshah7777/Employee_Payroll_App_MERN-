@@ -14,7 +14,7 @@ class EmployeeController{
      * @method registerApi to save the employee
      * @param req,res for service
      */
-    registerApi = (req, res) => {
+    register = (req, res) => {
         // Validate request
         const validation = validateSchema.validate(req.body)
         if(validation.error){
@@ -35,11 +35,11 @@ class EmployeeController{
         service.createDetails(employee, (error,data) => {
             if(error){
                 return res.status(400)
-                .send({message: "Email already exists"})
+                .send({success:false, message: "Email already exists", data: null})
             }
             else{
                 return res.status(200)
-                .send({message: "Success! Employee has been Registered", data: empdata.data = data})
+                .send({success: true, message: "Employee has been successfully registered", data: empdata.data = data})
             }
         })
     }
@@ -49,7 +49,7 @@ class EmployeeController{
      * @method loginApi
      * @param req,res for service
      */
-    loginApi = (req, res) => {
+    login = (req, res) => {
         const loginData = {
             email: req.body.email,
             password : req.body.password
@@ -57,10 +57,10 @@ class EmployeeController{
 
         service.loginDetails(loginData, (error, token) => {
             if(error){
-                return res.status(400).send({message: error})
+                return res.status(400).send({success: false, message: error, data: null})
             }
             else{
-                return res.status(200).send({message: "Success! Logged In", token: token})
+                return res.status(200).send({success: true, message: "Successfully Logged In", token: token})
             }
         })
     }
