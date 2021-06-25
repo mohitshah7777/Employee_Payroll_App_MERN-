@@ -79,6 +79,21 @@ class EmployeeModel {
             return callBack(null, data);
         })
     }
+    /**
+     * @description find all users from the database
+     * @param findAll 
+     * @param callback for service
+     */
+    
+    findAll = (callBack) => {
+        Register.find({}, (error, data) => {
+            if(error){
+                return callBack(error, null)
+            }else{
+                return callBack(null, data)
+            }
+        })
+    }
 }
 
 module.exports = new EmployeeModel();

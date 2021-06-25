@@ -11,7 +11,7 @@ const validateSchema = require('../middleware/validation');
 class EmployeeController{
     /**
      * @description Create and save employee and sending response to service
-     * @method registerApi to save the employee
+     * @method register to save the employee
      * @param req,res for service
      */
     register = (req, res) => {
@@ -46,7 +46,7 @@ class EmployeeController{
 
     /**
      * @description retrieving login info from user by email and password
-     * @method loginApi
+     * @method login
      * @param req,res for service
      */
     login = (req, res) => {
@@ -54,13 +54,27 @@ class EmployeeController{
             email: req.body.email,
             password : req.body.password
         }
-
         service.loginDetails(loginData, (error, token) => {
             if(error){
                 return res.status(400).send({success: false, message: error, data: null})
             }
             else{
                 return res.status(200).send({success: true, message: "Successfully Logged In", token: token})
+            }
+        })
+    }
+
+     /**
+     * @description retrieving every user info
+     * @method read
+     * @param req,res for service
+     */
+    read = (req, res) => {
+        service.getAllDetails((error, data) => {
+            if(error){
+                return res.status(400).send({success: false, message : error, data: null})
+            }else{
+                return res.status(200).send({success: true, message: "All Employee details fetched", data: data})
             }
         })
     }

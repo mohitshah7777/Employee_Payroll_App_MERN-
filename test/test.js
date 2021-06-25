@@ -23,7 +23,7 @@ describe('Tests api', () => {
                     res.body.should.have.property("success").eql(true);
                     res.body.should.have.property("message").eql("Successfully Logged In")
                     res.body.should.have.property("token");
-                    done()
+                done()
             })
         }) 
     })

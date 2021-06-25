@@ -8,10 +8,14 @@
 const controller = require('../controllers/controller')
 
 module.exports = (app) => {
-
+    
     //api for registration
     app.post('/register', controller.register);
 
     //api for login
     app.post('/login', controller.login);
+
+    //api for read
+    app.get('/read', controller.read);
+
 }
