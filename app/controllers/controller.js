@@ -64,17 +64,33 @@ class EmployeeController{
         })
     }
 
-     /**
-     * @description retrieving every user info
+    /**
+     * @description retrieving all user data
      * @method read
      * @param req,res for service
-     */
+    */
     read = (req, res) => {
         service.getAllDetails((error, data) => {
             if(error){
-                return res.status(400).send({success: false, message : error, data: null})
+                return res.status(400).send({success: false, message : "Error while fetching information", data: null})
             }else{
                 return res.status(200).send({success: true, message: "All Employee details fetched", data: data})
+            }
+        })
+    }
+
+    /**
+     * @description retrieving user data by Id
+     * @method readOne
+     * @param req,res for service
+    */
+    readOne = (req, res) => {
+        var employeeId = req.params
+        service.getDetailsById(employeeId,(error, data) => {
+            if(error){
+                return res.status(400).send({success: false, message: "Error while fetching information", data: null})
+            }else{
+                return res.status(200).send({success: true, message: "Particular Employee details fetched", data: data})
             }
         })
     }

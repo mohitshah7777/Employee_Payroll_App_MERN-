@@ -24,7 +24,7 @@ class EmployeeService {
      * @description sends the info to loginApi in the controller
      * @method loginDetails
      * @param callback callback for controller
-     */
+    */
     loginDetails = (loginData, callback) => {
         model.loginDetails(loginData, (error, data) => {
             const token = helper.createToken({loginData})
@@ -36,14 +36,25 @@ class EmployeeService {
             return callback(null, token)
         })
     }
+
     /**
      * @description sends the info to read in the controller
      * @method getAllDetails
      * @param callback callback for controller
-     */
-    
+    */
     getAllDetails = (callback) => {
         model.findAll((error, data) => {
+            return (error) ? callback(error, null) : callback(null, data)
+        })
+    }
+
+    /**
+     * @description sends the info to readOne in the controller
+     * @method getDetailsById
+     * @param callback callback for controller
+    */
+    getDetailsById = (employee, callback) => {
+        model.findOne(employee, (error, data) => {
             return (error) ? callback(error, null) : callback(null, data)
         })
     }
