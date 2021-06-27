@@ -70,6 +70,18 @@ class EmployeeService {
             return (error) ? callback(error, null) : callback(null, data)
         })
     }
+
+    /**
+     * @description sends the info to delete in the controller
+     * @method deleteDetailsById
+     * @param callback callback for controller
+    */
+     deleteDetailsById = (employee, callback) => {
+        model.deleteById(employee, (error, data) => {
+            return (error) ? callback(error, null) : callback(null, data)
+        })
+    }
+    
 }
 
 module.exports = new EmployeeService();

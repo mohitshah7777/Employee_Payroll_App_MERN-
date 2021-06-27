@@ -127,6 +127,22 @@ class EmployeeController{
             }
         })
     }
+
+    /**
+     * @description deleting user data using Id
+     * @method delete
+     * @param req,res for service
+    */
+    delete = (req, res) => {
+        var employee = req.params
+        service.deleteDetailsById(employee, (error, data) => {
+            if(error){
+                return res.status(400).send({success: false, message: error, data: null})
+            }else{
+                return res.status(200).send({success: true, message: "Employee details deleted successfully!", data: data})
+            }
+        })
+    }
 }
 
 module.exports = new EmployeeController();
