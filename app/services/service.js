@@ -27,13 +27,14 @@ class EmployeeService {
     */
     loginDetails = (loginData, callback) => {
         model.loginDetails(loginData, (error, data) => {
-            const token = helper.createToken({loginData})
             if(error){
-                callback(error, null)
-            }else if(helper.bcryptAuthentication(loginData.password, data.password)){
+                return callback(error, null)
+            }if(helper.bcryptAuthentication(loginData.password, data.password)){
                 return callback("Incorrect Password", error)
+            }else{
+                const token = helper.createToken({loginData})
+                return callback(null, token)
             }
-            return callback(null, token)
         })
     }
 
@@ -55,6 +56,17 @@ class EmployeeService {
     */
     getDetailsById = (employee, callback) => {
         model.findOne(employee, (error, data) => {
+            return (error) ? callback(error, null) : callback(null, data)
+        })
+    }
+    
+    /**
+     * @description sends the info to update in the controller
+     * @method updateDetailsById
+     * @param callback callback for controller
+    */
+    updateDetailsById = (employeeId, employee, callback) => {
+        model.updateById(employeeId, employee, (error, data) => {
             return (error) ? callback(error, null) : callback(null, data)
         })
     }

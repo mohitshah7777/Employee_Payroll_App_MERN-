@@ -7,6 +7,8 @@
 -----------------------------------------------------------------------------------------------*/
 const service = require('../services/service');
 const validateSchema = require('../middleware/validation');
+const bcrypt = require('bcryptjs')
+const model = require('../models/model')
 
 class EmployeeController{
     /**
@@ -56,7 +58,7 @@ class EmployeeController{
         }
         service.loginDetails(loginData, (error, token) => {
             if(error){
-                return res.status(400).send({success: false, message: error, data: null})
+                return res.status(400).send({success: false, message: error, token: null})
             }
             else{
                 return res.status(200).send({success: true, message: "Successfully Logged In", token: token})
@@ -91,6 +93,37 @@ class EmployeeController{
                 return res.status(400).send({success: false, message: "Error while fetching information", data: null})
             }else{
                 return res.status(200).send({success: true, message: "Particular Employee details fetched", data: data})
+            }
+        })
+    }
+    
+    /**
+     * @description updating user data using Id
+     * @method update
+     * @param req,res for service
+    */
+    update = (req, res) => {
+        const validation = validateSchema.validate(req.body)
+        if(validation.error){
+            res.status(400).send({message: validation.error.details[0].message})
+        }
+        
+        const employee = {
+            _id: req.params._id,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: req.body.password,
+            confirmPassword: req.body.password
+        } 
+
+        var employeeId = req.params
+
+        service.updateDetailsById(employeeId, employee,(error, data) => {
+            if(error){
+                return res.status(400).send({success: false, message: error, data: null})
+            }else{
+                return res.status(200).send({success: true, message: "Employee details updated successfully", data: data})
             }
         })
     }

@@ -5,7 +5,8 @@
  * @author       Mohit Shah <mohitshah7777@gmail.com>
  * @since        15/06/2021  
 -----------------------------------------------------------------------------------------------*/
-const controller = require('../controllers/controller')
+const controller = require('../controllers/controller');
+const helper = require('../middleware/helper');
 
 module.exports = (app) => {
     
@@ -21,4 +22,6 @@ module.exports = (app) => {
     //api for read by id
     app.get('/read/:_id', controller.readOne);
 
+    //api for update by id
+    app.put('/update/:_id', controller.update);
 }

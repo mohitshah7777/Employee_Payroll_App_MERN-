@@ -109,6 +109,27 @@ class EmployeeModel {
             }
         })
     }
+
+    /**
+     * @description find user by id and update in the database
+     * @param updateById
+     * @param callback for service
+     */
+    updateById = (_id, employee, callBack) => {
+        Register.findByIdAndUpdate({'_id': employee._id}, {
+            firstName: employee.firstName,
+            lastName: employee.lastName,
+            email: employee.email,
+            password: employee.password,
+            confirmPassword: employee.confirmPassword
+        }, (error, data) => {
+            if(error){
+                return callBack(error, null)
+            }else {
+                return callBack(null, data)
+            }
+        })
+    }
 }
 
 module.exports = new EmployeeModel();
