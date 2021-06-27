@@ -89,8 +89,8 @@ class EmployeeController{
     readOne = (req, res) => {
         var employeeId = req.params
         service.getDetailsById(employeeId,(error, data) => {
-            if(error){
-                return res.status(400).send({success: false, message: "Error while fetching information", data: null})
+            if(error || data == null){
+                return res.status(404).send({success: false, message: "Error! Not Found", data: null})
             }else{
                 return res.status(200).send({success: true, message: "Particular Employee details fetched", data: data})
             }
@@ -121,7 +121,7 @@ class EmployeeController{
 
         service.updateDetailsById(employeeId, employee,(error, data) => {
             if(error){
-                return res.status(400).send({success: false, message: error, data: null})
+                return res.status(404).send({success: false, message: "Error! Not Found", data: null})
             }else{
                 return res.status(200).send({success: true, message: "Employee details updated successfully", data: data})
             }
@@ -136,8 +136,8 @@ class EmployeeController{
     delete = (req, res) => {
         var employee = req.params
         service.deleteDetailsById(employee, (error, data) => {
-            if(error){
-                return res.status(400).send({success: false, message: error, data: null})
+            if(error || data == null){
+                return res.status(404).send({success: false, message: "Employee not found", data: null})
             }else{
                 return res.status(200).send({success: true, message: "Employee details deleted successfully!", data: data})
             }

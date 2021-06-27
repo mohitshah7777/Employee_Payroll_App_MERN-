@@ -1,6 +1,55 @@
 {
     "login": {
-        "email": "testtoken@gmail.com",
-        "password": "Token@123"
+        "email": "debug@gmail.com",
+        "password": "Debug@123"
+    },
+    
+    "loginNegative": {
+        "email": "neg@gmail.com",
+        "password": "neg@123"
+    },
+
+    "register": {
+        "firstName": "Testone",
+        "lastName": "Cases",
+        "email": "testregis@gmail.com",
+        "password": "Token@1234",
+        "confirmPassword": "Token@1234"
+    },
+    
+    "registerNegative": {
+        "firstName": "Testone",
+        "lastName": "Cases",
+        "email": "testregis@gmail.com",
+        "password": "Token@1234",
+        "confirmPassword": "Token@1234"
+    },
+
+    "employeeId": "60d61e518d9fc31e44d79141",
+
+    "employeeIdNegative": "60d196c9171e4007f03a3b8",
+
+    "employeeIdDelete": "60d196c9171e4007f03a3b82",
+
+    "employeeIdDeleteNegative": "60d196c9171e4007f03a3b8",
+
+    "employeeIdUpdate": "60d61e518d9fc31e44d79141",
+    
+    "updateData": {
+        "firstName": "Debug",
+        "lastName": "Test",
+        "email": "debug@gmail.com",
+        "password": "Debug@123",
+        "confirmPassword": "Debug@123"
+    },
+
+    "employeeIdUpdateNegative": "60d61e518d9fc31e44d7914",
+
+    "updateDataNegative": {
+        "firstName": "Debug",
+        "lastName": "Test",
+        "email": "debug@gmail.com",
+        "password": "Debug@123",
+        "confirmPassword": "Debug@123"
     }
 }
