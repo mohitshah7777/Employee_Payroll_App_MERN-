@@ -30,7 +30,7 @@ class Helper{
      */
     bcryptAuthentication = (loginPassword, databasePassword) => {
         let result = bcrypt.compareSync(loginPassword, databasePassword)
-        return (loginPassword && databasePassword) ? !result : false;
+        return (loginPassword && databasePassword) ? result : false;
     }
     
     /**

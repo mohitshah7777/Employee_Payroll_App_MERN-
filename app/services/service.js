@@ -30,11 +30,10 @@ class EmployeeService {
             if(error){
                 return callback(error, null)
             }if(helper.bcryptAuthentication(loginData.password, data.password)){
-                return callback("Incorrect Password", error)
-            }else{
                 const token = helper.createToken({loginData})
                 return callback(null, token)
             }
+           return callback("Incorrect Password", error)    
         })
     }
 
