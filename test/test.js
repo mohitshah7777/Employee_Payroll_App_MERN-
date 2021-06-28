@@ -2,8 +2,8 @@ const chai = require('chai')
 const chaiHttp = require('chai-http')
 const { object } = require('joi')
 const server = require('../server')
-const employeeData = require('./data.json')
-chai.should()
+const employeeData= require('./data.json')
+chai.should ()
 chai.use(chaiHttp)
 
 describe('Tests api', () => {
