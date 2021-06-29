@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "test": "mocha --timeout 10000"
+    "test": "mocha --timeout 10000",
+    "coverage": "nyc --reporter=text npm run test"
   },
   "author": "Mohit Shah",
   "license": "MIT",
@@ -24,6 +25,7 @@
     "mocha": "^9.0.1",
     "mongoose": "^5.12.13",
     "nodemon": "^2.0.7",
+    "nyc": "^15.1.0",
     "swagger-stats": "^0.99.1",
     "swagger-ui-express": "^4.1.6",
     "winston": "^3.3.3"
