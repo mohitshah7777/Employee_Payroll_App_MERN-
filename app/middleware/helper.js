@@ -18,7 +18,7 @@ class Helper{
      */
     createToken = (loginData) => {
         return jwt.sign(loginData, process.env.SECRET_TOKEN, {
-            expiresIn: "3000s"
+            expiresIn: "3000000s"
         })
     }
 
@@ -43,10 +43,10 @@ class Helper{
     tokenChecker(req, res, next) {
         let token = req.get('token');
         return (token) ?
-            jwt.verify(token, SECRET_TOKEN, error => {
+            jwt.verify(token, process.env.SECRET_TOKEN, error => {
                 return (error) ? res.status(400).send({success: false, message: "Invalid Token"}) : next();
             }) :
-        res.status(401).send({success: true, message: "Token missing! Invalid user"});
+        res.status(401).send({success: false, message: "Authorisation failed! Invalid user"});
     }
 }
 

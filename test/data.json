@@ -25,6 +25,22 @@
         "confirmPassword": "Token@1234"
     },
 
+    "registerWithoutFirstName" : {
+        "firstName": "",
+        "lastName": "Shah",
+        "email": "mohitshah3@gmail.com",
+        "password": "Mohit@123",
+        "confirmPassword": "Mohit@123"
+    },
+
+    "registerWithoutLastName" : {
+        "firstName": "Mohit",
+        "lastName": "",
+        "email": "mohitshah4@gmail.com",
+        "password": "Mohit@123",
+        "confirmPassword": "Mohit@123"
+    },
+
     "employeeId": "60d61e518d9fc31e44d79141",
 
     "employeeIdNegative": "60d196c9171e4007f03a3b8",

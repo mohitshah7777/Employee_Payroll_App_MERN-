@@ -82,6 +82,34 @@ describe('Tests api', () => {
                     res.body.should.have.property("data").eql(null);    
                 done()
             })
+        })
+
+        it("Given valid details except firstname It should not post register details", (done) => {
+            const registerDataWithoutFirstName = employeeData.registerWithoutFirstName
+            chai.request(server)
+                .post("/register")
+                .send(registerDataWithoutFirstName)
+                .end((error, res) => {
+                    // console.log(res)
+                    res.should.have.status(400)
+                    res.body.should.be.a('object')
+                    res.body.should.have.property("message").eql('\"firstName\" is not allowed to be empty')
+                done()
+            })
+        })
+
+        it("Given valid details except lastname It should not post register details", (done) => {
+            const registerDataWithoutLastName = employeeData.registerWithoutLastName
+            chai.request(server)
+                .post("/register")
+                .send(registerDataWithoutLastName)
+                .end((error, res) => {
+                    // console.log(res)
+                    res.should.have.status(400)
+                    res.body.should.be.a('object')
+                    res.body.should.have.property("message").eql('\"lastName\" is not allowed to be empty')
+                done()
+            })
         }) 
     })
 
@@ -162,7 +190,6 @@ describe('Tests api', () => {
                 .put("/update/"+updateId)
                 .send(updateDetails)
                 .end((error, res) => {
-                    console.log(res);
                     res.body.should.be.a('object')
                     res.should.have.status(200)
                     res.body.should.have.property("success").eql(true);

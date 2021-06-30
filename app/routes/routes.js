@@ -17,14 +17,14 @@ module.exports = (app) => {
     app.post('/login', controller.login);
 
     //api for read
-    app.get('/read', controller.read);
+    app.get('/read', helper.tokenChecker ,controller.read);
 
     //api for read by id
-    app.get('/read/:_id', controller.readOne);
+    app.get('/read/:_id', helper.tokenChecker ,controller.readOne);
 
     //api for update by id
-    app.put('/update/:_id', controller.update);
+    app.put('/update/:_id',helper.tokenChecker , controller.update);
     
     //api for delete by id
-    app.delete('/delete/:_id', controller.delete);
+    app.delete('/delete/:_id',helper.tokenChecker , controller.delete);
 }
