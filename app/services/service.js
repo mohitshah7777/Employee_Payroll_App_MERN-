@@ -33,7 +33,7 @@ class EmployeeService {
                 const token = helper.createToken({loginData})
                 return (token) ? callback(null, token) : callback(error, null)
             }
-            return callback("Incorrect Password", error)    
+            return callback("Incorrect Password", null)    
         })
     }
 

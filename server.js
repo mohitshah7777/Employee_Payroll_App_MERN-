@@ -1,9 +1,10 @@
 const express = require("express");
 require('./config/database.config');
-require('dotenv')
+require('dotenv');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./app/swagger/swagger.json');
 const logger = require("./logger/logger");
+var cors = require('cors');
 
 // Create express app
 const app = express();
@@ -13,8 +14,9 @@ app.use(express.urlencoded({extended: true}));
 
 // parse requests of content-type - application/json
 app.use(express.json());
+app.use(cors());
 
-const port = process.env.PORT
+const port = process.env.PORT;
 
 var options = {
     explorer: true
@@ -33,7 +35,7 @@ require('./app/routes/routes')(app);
 
 // listen for requests
 app.listen(port, () => {
-    logger.log(`info`,`Server is listening on port : ${port}`);
+    console.log(`Server is listening on port : ${port}`);
 });
 
 module.exports = app;

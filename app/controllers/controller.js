@@ -7,8 +7,6 @@
 -----------------------------------------------------------------------------------------------*/
 const service = require('../services/service');
 const validateSchema = require('../middleware/validation');
-const bcrypt = require('bcryptjs')
-const model = require('../models/model')
 
 class EmployeeController{
     /**

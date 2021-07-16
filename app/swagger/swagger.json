@@ -30,7 +30,7 @@
     "/register": {
       "post": {
         "tags": [
-          "Register"
+          "Users"
         ],
         "description": "Create new user in system",
         "parameters": [
@@ -67,7 +67,7 @@
     "/login": {
       "post": {
         "tags": [
-          "login"
+          "Users"
         ],
         "description": "login user in system",
         "parameters": [
@@ -107,7 +107,7 @@
     },
     "/read": {
       "get": {
-        "tags": ["read"],
+        "tags": ["Users"],
         "description": "read user data from system",
         "parameters": [],
         "produces": [
@@ -138,10 +138,10 @@
       }
     },
 
-    "/read/:{_id}": {
+    "/read/{:_id}": {
       "get": {
         "tags": [
-          "readById"
+          "Users"
         ],
         "description": "read user data by id from system",
         "parameters": [
@@ -176,10 +176,10 @@
         }]
       }
     },
-    "/update/:{_id}": {
+    "/update/{:_id}": {
       "put": {
         "tags": [
-          "updateById"
+          "Users"
         ],
         "description": "update user data by id from system",
         "parameters": [
@@ -222,10 +222,10 @@
         }]
       }
     },
-    "/delete/:{_id}": {
+    "/delete/{:_id}": {
       "delete": {
         "tags": [
-          "deleteById"
+          "Users"
         ],
         "description": "delete user data by id from system",
         "parameters": [
