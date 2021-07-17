@@ -5,7 +5,7 @@
  * @author       Mohit Shah <mohitshah7777@gmail.com>
  * @since        15/06/2021  
 -----------------------------------------------------------------------------------------------*/
-const model = require('../models/model')
+const model = require('../models/user')
 const helper = require('../middleware/helper')
 
 class EmployeeService {

@@ -7,7 +7,6 @@
 -----------------------------------------------------------------------------------------------*/
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const { loginDetails } = require('../models/model')
 
 class Helper{
 
