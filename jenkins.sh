@@ -6,8 +6,8 @@ directory=$(pwd)
 echo "Directory is $directory"
 pm2 delete 0
 npm install
-npm start
-pm2 --name Employee_Payroll_BackEnd start npm -- start
+# npm start
+pm2 --name Employee_Payroll_Frontend start npm -- start
 # npm i
 # npm run build
 # npm start
