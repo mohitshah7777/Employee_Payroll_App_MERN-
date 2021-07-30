@@ -16,10 +16,10 @@ class CreateEmployeeController{
      */
     createEmployee = (req, res) => {
         // Validate request
-        const validation = validateEmployeeSchema.validate(req.body)
-        if(validation.error){
-            res.status(400).send({message: validation.error.details[0].message})
-        }
+        // const validation = validateEmployeeSchema.validate(req.body)
+        // if(validation.error){
+        //     res.status(400).send({message: validation.error.details[0].message})
+        // }
 
         // Create an employee
         const employee = {
@@ -27,9 +27,7 @@ class CreateEmployeeController{
             lastName: req.body.lastName,
             email: req.body.email,
             department: req.body.department,
-            salary: req.body.salary,
-            password: req.body.password,
-            confirmPassword: req.body.confirmPassword
+            salary: req.body.salary
         }
 
         const empdata ={}
@@ -83,23 +81,21 @@ class CreateEmployeeController{
      * @param req,res for service
     */
     update = (req, res) => {
-        const validation = validateEmployeeSchema.validate(req.body)
-        if(validation.error){
-            res.status(400).send({message: validation.error.details[0].message})
-        }
+        // const validation = validateEmployeeSchema.validate(req.body)
+        // if(validation.error){
+        //     res.status(400).send({message: validation.error.details[0].message})
+        // }
         
+        var employeeId = req.params
+
         const employee = {
             _id: req.params._id,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
             department: req.body.department,
-            salary: req.body.salary,
-            password: req.body.password,
-            confirmPassword: req.body.password
+            salary: req.body.salary
         } 
-
-        var employeeId = req.params
 
         service.updateDetailsById(employeeId, employee,(error, data) => {
             if(error){

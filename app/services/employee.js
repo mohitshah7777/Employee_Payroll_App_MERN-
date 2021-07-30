@@ -57,8 +57,8 @@ class CreateEmployeeService {
      * @method deleteDetailsById
      * @param callback callback for controller
     */
-     deleteDetailsById = (employee, callback) => {
-        model.deleteById(employee, (error, data) => {
+     deleteDetailsById = (employeeId, callback) => {
+        model.deleteById(employeeId, (error, data) => {
             return (error) ? callback(error, null) : callback(null, data)
         })
     }

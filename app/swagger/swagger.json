@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "localhost:4000",
+  "host": "3.131.96.207:4000",
   "basePath": "/",
   "tags": [
     {
@@ -350,12 +350,6 @@
         },
         "salary": {
           "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "confirmPassword": {
-          "type": "string"
         }
       }
     },
@@ -376,12 +370,6 @@
           "type": "string"
         },
         "salary": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "confirmPassword": {
           "type": "string"
         }
       }

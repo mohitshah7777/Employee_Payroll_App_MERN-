@@ -3,7 +3,7 @@ require('./config/database.config');
 require('dotenv');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./app/swagger/swagger.json');
-const logger = require("./logger/logger");
+// const logger = require("./logger/logger");
 var cors = require('cors');
 
 // Create express app

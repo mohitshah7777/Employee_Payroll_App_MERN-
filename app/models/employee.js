@@ -32,14 +32,6 @@ const CreateEmpSchema = mongoose.Schema({
     salary: {
         type: String,
         required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    confirmPassword: {
-        type: String,
-        required: true
     }
 },{
     timestamps: true
@@ -67,9 +59,7 @@ class CreateEmployeeModel {
             lastName: employee.lastName,
             email: employee.email,
             department: employee.department,
-            salary: employee.salary,
-            password: employee.password,
-            confirmPassword: employee.confirmPassword
+            salary: employee.salary
         });
         createSchema.save(callback)
     };
@@ -110,15 +100,13 @@ class CreateEmployeeModel {
      * @param callback for service
      */
     updateById = (_id, employee, callBack) => {
-        Employee.findByIdAndUpdate({'_id': employee._id}, {
+        Employee.findByIdAndUpdate(_id, {
             firstName: employee.firstName,
             lastName: employee.lastName,
             email: employee.email,
             department: employee.department,
-            salary: employee.salary,
-            password: employee.password,
-            confirmPassword: employee.confirmPassword
-        }, (error, data) => {
+            salary: employee.salary
+        },{new: true}, (error, data) => {
             if(error){
                 return callBack(error, null)
             }else {
@@ -132,8 +120,8 @@ class CreateEmployeeModel {
      * @param deleteById
      * @param callback for service
      */
-    deleteById = (employee, callBack) => {
-        Employee.findByIdAndRemove(employee._id, (error, data) => {
+    deleteById = (employeeId, callBack) => {
+        Employee.findByIdAndRemove(employeeId, (error, data) => {
             if(error){
                 return callBack(error, null)
             }else{

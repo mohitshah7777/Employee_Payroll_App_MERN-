@@ -36,51 +36,6 @@ class EmployeeService {
             return callback("Incorrect Password", null)    
         })
     }
-
-    /**
-     * @description sends the info to read in the controller
-     * @method getAllDetails
-     * @param callback callback for controller
-    */
-    getAllDetails = (callback) => {
-        model.findAll((error, data) => {
-            return (error) ? callback(error, null) : callback(null, data)
-        })
-    }
-
-    /**
-     * @description sends the info to readOne in the controller
-     * @method getDetailsById
-     * @param callback callback for controller
-    */
-    getDetailsById = (employee, callback) => {
-        model.findOne(employee, (error, data) => {
-            return (error) ? callback(error, null) : callback(null, data)
-        })
-    }
-    
-    /**
-     * @description sends the info to update in the controller
-     * @method updateDetailsById
-     * @param callback callback for controller
-    */
-    updateDetailsById = (employeeId, employee, callback) => {
-        model.updateById(employeeId, employee, (error, data) => {
-            return (error) ? callback(error, null) : callback(null, data)
-        })
-    }
-
-    /**
-     * @description sends the info to delete in the controller
-     * @method deleteDetailsById
-     * @param callback callback for controller
-    */
-     deleteDetailsById = (employee, callback) => {
-        model.deleteById(employee, (error, data) => {
-            return (error) ? callback(error, null) : callback(null, data)
-        })
-    }
-    
 }
 
 module.exports = new EmployeeService();
