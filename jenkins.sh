@@ -4,7 +4,8 @@ cp .env /home/ubuntu/Employee_Payroll_BackEnd/
 cd /home/ubuntu/Employee_Payroll_BackEnd
 directory=$(pwd)
 echo "Directory is $directory"
-pm2 delete 0
+# pm2 delete 0
+npx kill-port 4000
 npm install
 npm start
 # pm2 --name Employee_Payroll_Frontend start npm -- start
