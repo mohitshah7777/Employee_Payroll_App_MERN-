@@ -16,10 +16,10 @@ class EmployeeController{
      */
     register = (req, res) => {
         // Validate request
-        const validation = validateSchema.validate(req.body)
-        if(validation.error){
-            res.status(400).send({message: validation.error.details[0].message})
-        }
+        // const validation = validateSchema.validate(req.body)
+        // if(validation.error){
+        //     res.status(400).send({message: validation.error.details[0].message})
+        // }
 
         // Create an employee
         const employee = {
