@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
-# cp .env /home/ubuntu/Employee_Payroll_BackEnd/
-cd /home/ubuntu/Employee_Payroll_BackEnd
+cp .env /home/ubuntu/Emp_Pay_Backend/
+cd /home/ubuntu/Emp_Pay_Backend
 directory=$(pwd)
 echo "Directory is $directory"
 # pm2 delete 0
